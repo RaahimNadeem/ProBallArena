@@ -229,6 +229,7 @@ export default function Home() {
               {
                 title: "TENNIS COURT",
                 price: "PKR 4,800",
+                tag:"tennis",
                 period: "per hour",
                 features: [
                   "Professional-grade surface",
@@ -244,6 +245,7 @@ export default function Home() {
                 title: "PADEL COURT",
                 price: "PKR 4,800",
                 period: "per hour",
+                tag:"padel",
                 features: [
                   "Glass-walled enclosure",
                   "Premium artificial turf",
@@ -258,6 +260,7 @@ export default function Home() {
                 title: "CRICKET GROUND",
                 price: "PKR 2,500",
                 period: "per hour",
+                tag:"cricket",
                 features: [
                   "Professional cricket pitch",
                   "Practice nets available",
@@ -344,7 +347,7 @@ export default function Home() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/booking">
+                    <Link href={`/booking/${court.tag}`}>
                       <Button
                         className={`w-full py-4 font-bold transition-all duration-300 ${
                           court.highlight
