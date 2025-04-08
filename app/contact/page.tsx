@@ -274,12 +274,10 @@ export default function ContactPage() {
                       <Clock className="h-6 w-6" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-1">Opening Hours</h3>
+                      <h3 className="text-xl font-bold mb-1">Open 24/7</h3>
                       <p className="text-gray-300">
-                        Monday - Friday: 7am - 11pm
-                      </p>
-                      <p className="text-gray-300">
-                        Saturday - Sunday: 8am - 10pm
+                        We're here whenever the mood strikes. Midnight tennis?
+                        Sunrise cricket? Go wild.
                       </p>
                     </div>
                   </div>
