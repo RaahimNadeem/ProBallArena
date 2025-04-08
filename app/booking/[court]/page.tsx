@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Check, ArrowLeft } from "lucide-react"
+import { Check, ArrowLeft, ChevronUp, ChevronDown } from "lucide-react"
 import Image from "next/image"
 
 export default function CourtBookingPage({ params }: { params: { court: string } }) {
@@ -16,6 +16,13 @@ export default function CourtBookingPage({ params }: { params: { court: string }
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [bookingComplete, setBookingComplete] = useState(false)
+
+  const [showFeatures, setShowFeatures] = useState(false);
+
+  const toggleFeatures = () => {
+    setShowFeatures(!showFeatures);
+  };
+
   
   const courtData = {
     tennis: {
@@ -170,7 +177,7 @@ export default function CourtBookingPage({ params }: { params: { court: string }
                 </div>
                 
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                  <div className="relative w-full md:w-1/3 h-64 rounded-xl overflow-hidden">
+                  <div className="relative w-full md:w-1/3 h-56 md:h-64 rounded-xl overflow-hidden">
                     <Image
                       src={court.image}
                       alt={court.title}
@@ -187,24 +194,65 @@ export default function CourtBookingPage({ params }: { params: { court: string }
                       <span className="ml-2 text-sm opacity-80">{court.period}</span>
                     </div>
                     
-                    <ul className="space-y-2 mb-6">
-                      {court.features.map((feature, i) => (
-                        <li key={i} className="flex items-center">
-                          <svg
-                            className={`w-5 h-5 mr-2 text-${court.color}`}
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <span className="text-white">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {/* Features Section - Visible on md and above */}
+<div className="md:block hidden">
+  <ul className="space-y-2 mb-6">
+    {court.features.map((feature, i) => (
+      <li key={i} className="flex items-center">
+        <svg
+          className={`w-5 h-5 mr-2 text-${court.color}`}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fillRule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <span className="text-white">{feature}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+
+{/* Toggle Button for Features on Small Screens */}
+<div className="block md:hidden mb-2">
+<button
+    onClick={toggleFeatures}
+    className="flex items-center text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none"
+  >
+    {showFeatures ? (
+      <>
+        <ChevronUp className="w-4 h-4 mr-2" /> Hide Details
+      </>
+    ) : (
+      <>
+        <ChevronDown className="w-4 h-4 mr-2" /> Show Details
+      </>
+    )}
+  </button>
+  {showFeatures && (
+    <ul className="mt-4 space-y-2">
+      {court.features.map((feature, i) => (
+        <li key={i} className="flex items-center">
+          <svg
+            className={`w-5 h-5 mr-2 text-${court.color}`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span className="text-white">{feature}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
                   </div>
                 </div>
               </div>
