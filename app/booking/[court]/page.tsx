@@ -460,6 +460,7 @@ export default function CourtBookingPage({ params }: { params: { court: string }
                             placeholder="1234 5678 9012 3456"
                             className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
                           />
+                          <p className="text-xs text-gray-400 mt-1">For demo purposes, any card number is accepted</p>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -480,6 +481,31 @@ export default function CourtBookingPage({ params }: { params: { court: string }
                               className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
                             />
                           </div>
+                        </div>
+
+                        <div className="mt-4 flex items-center space-x-2">
+                          <div className="bg-white/10 rounded-md p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                              <rect width="20" height="14" x="2" y="5" rx="2" />
+                              <line x1="2" x2="22" y1="10" y2="10" />
+                            </svg>
+                          </div>
+                          <div className="bg-white/10 rounded-md p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                              <circle cx="12" cy="12" r="10" />
+                              <circle cx="12" cy="12" r="4" />
+                              <line x1="4.93" x2="19.07" y1="4.93" y2="19.07" />
+                            </svg>
+                          </div>
+                          <div className="bg-white/10 rounded-md p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                              <path d="M2 8h20M2 12h20M2 16h20" />
+                            </svg>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-2">
+                          <p className="text-sm text-gray-400">This is a demo payment system. No real payments will be processed.</p>
                         </div>
                       </div>
                     </div>
