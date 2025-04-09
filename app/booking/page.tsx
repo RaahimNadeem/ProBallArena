@@ -80,7 +80,7 @@ function BookingPageContent() {
       <h1 className="text-5xl md:text-6xl font-extrabold mb-6 mt-6 tracking-tight">
         BOOK YOUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">COURT</span>
       </h1>
-      <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <p className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
         Select your preferred court type and proceed to choose your booking time.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">

@@ -30,12 +30,27 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Send data to API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
+      // Success
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({
@@ -45,7 +60,11 @@ export default function ContactPage() {
         subject: "",
         message: "",
       });
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to send message. Please try again later.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
