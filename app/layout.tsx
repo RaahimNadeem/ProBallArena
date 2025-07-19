@@ -5,7 +5,13 @@ import { ThemeProvider } from "@/components/theme-provider"
 export const metadata = {
   title: "ProBall Arena",
   description: "Experience the ultimate padel court with state-of-the-art facilities",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 }
 
 export default function RootLayout({

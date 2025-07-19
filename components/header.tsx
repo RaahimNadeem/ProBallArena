@@ -70,7 +70,7 @@ export function Header() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 md:p-8 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8 transition-all duration-300 ${
           showBackground ? "bg-transparent" : "bg-transparent"
         }`}
       >
@@ -105,7 +105,7 @@ export function Header() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex items-center space-x-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300"
+          className="flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300"
         >
           <Menu className="w-5 h-5 text-white" />
           <span className="text-white font-medium hidden md:block">MENU</span>
