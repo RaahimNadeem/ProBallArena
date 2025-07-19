@@ -8,11 +8,11 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [audioEnabled, setAudioEnabled] = useState(false)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,90 +57,55 @@ export function Header() {
 
   return (
     <>
-      <motion.nav
+      <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-2 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${
+        transition={{ duration: 0.8 }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 md:p-8 transition-all duration-300 ${
           scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <Link href="/" className="text-3xl font-extrabold tracking-tighter group">
-            <span className="inline-block transition-transform duration-300 group-hover:scale-105">PRO</span>
-            <span className="inline-block text-accent transition-transform duration-300 group-hover:scale-110">BALL</span>
-            <span className="inline-block transition-transform duration-300 group-hover:scale-105"> ARENA</span>
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className={`text-white/90 hover:text-white transition-all duration-300 font-bold relative group ${
-                  pathname === item.href ? "text-accent" : ""
-                }`}
-              >
-                {item.name.toUpperCase()}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-white hover:text-black hover:bg-accent transition-all duration-300 relative overflow-hidden group"
-              onClick={toggleAudio}
-            >
-              <span className="absolute inset-0 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-              <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                {audioEnabled ? (
-                  <Volume2 className="h-5 w-5" />
-                ) : (
-                  <VolumeX className="h-5 w-5" />
-                )}
-              </span>
-            </Button>
-
-            <Link href="/booking">
-              <Button className="bg-accent hover:bg-accent/90 text-black rounded-full font-bold transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-105">
-                BOOK NOW
-              </Button>
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-4 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-white hover:text-black hover:bg-accent transition-all duration-300 relative overflow-hidden group"
-              onClick={toggleAudio}
-            >
-              <span className="absolute inset-0 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-              <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                {audioEnabled ? (
-                  <Volume2 className="h-5 w-5" />
-                ) : (
-                  <VolumeX className="h-5 w-5" />
-                )}
-              </span>
-            </Button>
-
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="text-white transition-all duration-300 hover:bg-white/10 hover:scale-110" 
-              onClick={() => setIsOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-          </div>
+        {/* Logo */}
+        <div className="flex items-center">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20"
+          >
+            <span className="text-white font-bold text-xl md:text-2xl">PB</span>
+          </motion.div>
         </div>
-      </motion.nav>
+
+        {/* Center Text */}
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="hidden md:block"
+        >
+          <p className="text-white/90 text-sm md:text-base font-medium tracking-wider uppercase text-center">
+            PREMIER SPORTS FACILITY COMMITTED<br />
+            TO THE FUTURE OF PADEL TENNIS.
+          </p>
+        </motion.div>
+
+        {/* Menu Button */}
+        <motion.button
+          initial={{ x: 20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="flex items-center space-x-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300"
+        >
+          <Menu className="w-5 h-5 text-white" />
+          <span className="text-white font-medium hidden md:block">MENU</span>
+        </motion.button>
+      </motion.header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isOpen && (
+        {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -157,7 +122,7 @@ export function Header() {
                   variant="ghost" 
                   size="icon" 
                   className="text-white transition-all duration-300 hover:bg-white/10 hover:scale-110" 
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   <X className="h-6 w-6" />
                 </Button>
@@ -176,7 +141,7 @@ export function Header() {
                       className={`text-3xl font-bold transition-all duration-300 hover:scale-110 ${
                         pathname === item.href ? "text-accent" : ""
                       }`}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name.toUpperCase()}
                     </Link>
@@ -189,7 +154,7 @@ export function Header() {
                   transition={{ delay: menuItems.length * 0.1 }}
                   className="mt-8"
                 >
-                  <Link href="/booking" onClick={() => setIsOpen(false)}>
+                  <Link href="/booking" onClick={() => setIsMenuOpen(false)}>
                     <Button className="bg-accent hover:bg-accent/90 text-black rounded-full px-8 py-6 text-xl font-bold transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-105">
                       BOOK NOW
                     </Button>
