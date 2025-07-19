@@ -11,6 +11,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(false);
+  const [showBackground, setShowBackground] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const pathname = usePathname();
 
@@ -22,6 +23,14 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBackground(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // Create audio element
@@ -62,7 +71,7 @@ export function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 md:p-8 transition-all duration-300 ${
-          scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"
+          showBackground ? "bg-transparent" : "bg-transparent"
         }`}
       >
         {/* Logo */}
@@ -84,10 +93,10 @@ export function Header() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="hidden md:block"
         >
-          <p className="text-white/90 text-sm md:text-base font-medium tracking-wider uppercase text-center">
+          {/* <p className="text-white/90 text-sm md:text-base font-medium tracking-wider uppercase text-center">
             PREMIER SPORTS FACILITY COMMITTED<br />
             TO THE FUTURE OF PADEL TENNIS.
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Menu Button */}
