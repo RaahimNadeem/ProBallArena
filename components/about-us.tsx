@@ -77,7 +77,7 @@ export function AboutUs() {
                 </h3>
                 
                 <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[12rem] font-black text-white leading-none mt-4 md:mt-2">
-                  4
+                  3
                 </h1>
                 
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black leading-tight">
