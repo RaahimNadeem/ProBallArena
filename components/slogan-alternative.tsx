@@ -15,7 +15,7 @@ export function SloganAlternative() {
   }, []);
 
   return (
-    <div className="py-8 sm:py-12 md:py-16 lg:py-24 bg-white relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16">
+    <div className="py-8 rounded-t-3xl sm:py-12 md:py-16 lg:py-24 bg-white relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16">
       <div id="firstpage-heading" className="space-y-1 sm:space-y-2 md:space-y-4 w-full max-w-7xl">
         {/* First line: "The best" */}
         <div className="bounding">
