@@ -10,7 +10,7 @@ export function AboutUs() {
     offset: ["start start", "end end"]
   });
 
-  // Transform to show all 4 slides - mobile needs less movement due to smaller screen
+  // Transform to show all 4 slides
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-300%"]);
 
   return (
